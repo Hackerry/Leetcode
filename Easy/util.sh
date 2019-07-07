@@ -9,7 +9,7 @@ compile() {
 		gcc -g ${FILE} -o out
 	elif [[ ${FILE} =~ cpp$ ]]; then
 		echo "Compile CPP file: ====================================="
-		g++ -g ${FILE} out
+		g++ -g ${FILE} -o out
 	else
 		echo "Unrecognized"
 	fi
