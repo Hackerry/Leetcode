@@ -6,10 +6,10 @@ FILE=$2
 compile() {
 	if [[ ${FILE} =~ c$ ]]; then
 		echo "Compile C file: ====================================="
-		gcc -g ${FILE} -o out
+		gcc -g ${FILE} -Wall -o out
 	elif [[ ${FILE} =~ cpp$ ]]; then
 		echo "Compile CPP file: ====================================="
-		g++ -g ${FILE} -o out
+		g++ -g ${FILE} -Wall -o out
 	else
 		echo "Unrecognized"
 	fi
