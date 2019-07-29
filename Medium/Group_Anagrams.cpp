@@ -1,13 +1,34 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <unordered_map>
 
 using namespace std;
 
 class Solution {
   public:
+    // Inspiration from solution
+    // Other thought, using XOR?
     vector<vector<string>> groupAnagrams(vector<string>& strs) {
-      
+      vector<vector<string>> result;
+      unordered_map<string, int> patterns;
+
+      for(string s: strs) {
+        string temp = s;
+        sort(temp.begin(), temp.end());
+
+        auto it = patterns.find(temp);
+        if(it == patterns.end()) {
+          patterns.insert({temp, result.size()});
+          vector<string> newList;
+          newList.push_back(s);
+          result.push_back(newList);
+        } else {
+          result[it->second].push_back(s);
+        }
+      }
+
+      return result;
     }
 
     vector<vector<string>> betterGroupAnagrams(vector<string>& strs) {
