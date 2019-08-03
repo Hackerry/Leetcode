@@ -16,6 +16,8 @@ struct ListNode {
 class LinkedList{
   private:
     ListNode* root;
+    vector<ListNode*> nodes;          // List structure may be changed, store
+                                      // in vectors instead
 
   public:
     ListNode* construct(vector<int>& input) {
@@ -24,17 +26,19 @@ class LinkedList{
       if(input.size() == 0) return root;
 
       root = new ListNode(input[0]);
+      nodes.push_back(root);
       ListNode* currNode = root;
       for(int i = 1; i < input.size(); i++) {
         currNode->next = new ListNode(input[i]);
         currNode = currNode->next;
+        nodes.push_back(currNode);
       }
 
       return root;
     }
 
-    void printList() {
-      ListNode* currNode = root;
+    void printList(ListNode* head) {
+      ListNode* currNode = head;
       cout << "[";
       while(currNode != nullptr) {
         if(currNode->next == nullptr) cout << currNode->val;
@@ -47,17 +51,7 @@ class LinkedList{
     void otherOperation() {}
 
     void deleteAll() {
-      if(root == nullptr) return;
-
-      ListNode* nextNode;
-      ListNode* currNode = root;
-      while(currNode != nullptr) {
-        nextNode = currNode->next;
-        delete(currNode);
-        currNode = nextNode;
-      }
-
-      root = nullptr;
+      for(ListNode* l: nodes) delete(l);
     }
 
     ~LinkedList() {
