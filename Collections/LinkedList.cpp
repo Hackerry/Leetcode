@@ -13,19 +13,16 @@ struct ListNode {
 };
 
 // Class for testing Linked List problems
-class LinkedList{
+class LinkedListUtil{
   private:
-    ListNode* root;
     vector<ListNode*> nodes;          // List structure may be changed, store
                                       // in vectors instead
 
   public:
     ListNode* construct(vector<int>& input) {
-      if(root != nullptr) deleteAll();
+      if(input.size() == 0) return nullptr;
 
-      if(input.size() == 0) return root;
-
-      root = new ListNode(input[0]);
+      ListNode* root = new ListNode(input[0]);
       nodes.push_back(root);
       ListNode* currNode = root;
       for(int i = 1; i < input.size(); i++) {
@@ -48,13 +45,11 @@ class LinkedList{
       cout << "]" << endl;
     }
 
-    void otherOperation() {}
-
     void deleteAll() {
       for(ListNode* l: nodes) delete(l);
     }
 
-    ~LinkedList() {
+    ~LinkedListUtil() {
       deleteAll();
     }
 };
