@@ -20,7 +20,7 @@ class Tree {
     // -1 means nullptr
     TreeNode* construct(const vector<int>& input) {
       int S = input.size();
-      if(S == 0) return nullptr;
+      if(S == 0 || input[0] == -1) return nullptr;
 
       // Initialize root
       TreeNode* root = new TreeNode(input[0]);
